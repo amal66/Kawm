@@ -1,0 +1,42 @@
+sudo: required
+
+language: python
+
+python:
+  - "3.6"
+
+services:
+  - docker
+
+before_install:
+  - sudo service postgresql stop
+  # wait for postgresql to shutdown
+  - while sudo lsof -Pi :5432 -sTCP:LISTEN -t; do sleep 1; done
+
+  - docker build -t mcommunity-flask:latest web
+  - docker network create -d bridge mcommunity-bridge-network
+  - docker run --name=db --network=mcommunity-bridge-network -d --expose 5432 -p 5432:5432/tcp  -e "POSTGRES_DB=mcommunity" -e "POSTGRES_USER=mcomm_dev_user" -e "POSTGRES_PASSWORD=mcomm_dev_password" postgres:alpine
+  - |
+      while ! psql "dbname=mcommunity host=127.0.0.1 user=mcomm_dev_user password=mcomm_dev_password port=5432" -c 'SELECT 1'> /dev/null 2>&1; do
+        echo 'Waiting for postgres...'
+        sleep 1;
+      done;
+  - docker run --name=mcommunity-instance --network=mcommunity-bridge-network -d --expose 5000 -p 5000:5000/tcp mcommunity-flask
+
+# command to install all the dependencies
+install:
+  - pip install -r requirements.txt
+  - pip install -r requirements-integration.txt
+  - pip install -r requirements-unit.txt
+
+
+before_script:
+  # It seems to take a few seconds before flask / db accept connections, so let's snooze.
+  - sleep 10
+  - export SQLALCHEMY_DATABASE_URI='sqlite:///web.db'
+  - python3 -m flask run > /dev/null &
+  - while ! sudo lsof -Pi :5000 -sTCP:LISTEN -t; do sleep 1; done
+
+script:
+  - python unit_test/__init__.py
+  - python integration_test/tests.py

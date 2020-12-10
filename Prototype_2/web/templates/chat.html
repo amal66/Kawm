@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+  <body>
+    {% if messages|length ==0 %}
+      <h3 style='color: #ccc;font-size: 30px;'>No message yet..</h3>
+      <div class="message_holder"></div>
+
+    {% else %}
+      <div class="message_holder">
+        {% for m in messages %}
+          <div>
+            <b style="color: #000">oops</b>
+            {{m.content}}
+          </div>
+
+        {% endfor %}
+      </div>
+    {% endif %}
+
+
+    <form id="msg" action="" method="POST">
+      <input type="text" class="message" placeholder="Messages"/>
+      <input type="submit"/>
+    </form>
+  </body>
+
+</html>
+-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Minerva Community Portal</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <!-- link rel=stylesheet type=text/css href="{{ url_for('static', filename='mastercss.css') }}"-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="compiled.css" />
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+  <!-- FOR SOCKETS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+  <script type="text/javascript">
+     var user_id = {{ user.id }};
+     var group_id = {{ group.id }};
+     var user_name = '{{ user.name }}';
+  </script>
+  <script src="/static/js/chat.js"></script>
+
+</head>
+
+<body id="page-top">
+  <!-- EXT: cleaner info passing-->
+
+  <!-- Page Wrapper -->
+<div class="container">
+  <!-- temp cause im lazy rn-->
+  {% if messages|length ==0 %}
+    <h3 style='color: #ccc;font-size: 30px;'>No message yet..</h3>
+    <div class="message_holder"></div>
+
+  {% else %}
+    <div class="message_holder">
+      {% for m in messages %}
+        <div>
+          <b style="color: #000">{{m[1]}}</b>
+          {{m[0].content}}
+        </div>
+
+      {% endfor %}
+    </div>
+  {% endif %}
+
+
+  <form id="msg" action="" method="POST">
+    <input type="text" class="message" placeholder="Messages"/>
+    <input type="submit"/>
+  </form>
+
+  <!-- temp cause im lazy rn-->
+
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <div class="settings-tray">
+        <img class="profile-image" src="https://upload.wikimedia.org/wikipedia/en/f/fa/Minerva_Schools_at_KGI_Seal.png" alt="Profile image">
+        <span class="settings-tray--right">
+          <i class="material-icons">cached</i>
+          <i class="material-icons">message</i>
+          <i class="material-icons">menu</i>
+        </span>
+      </div>
+      <div class="search-box">
+        <div class="input-wrapper">
+          <i class="material-icons">search</i>
+          <input type="text" placeholder="Search">
+        </div>
+      </div>
+
+
+      <div class="scrollable">
+        <div class="friend-drawer friend-drawer--onhover">
+          <img src="https://media-exp1.licdn.com/dms/image/C4D03AQEQw6-YoSl1hA/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=0BvvYXAn2pWdx0lnWbtuA8Q1RIi5K5unbY56voqgOYI" alt="Friend photo" class="profile-image">
+          <div class="text">
+            <h6>Philip Sterne</h6>
+            <p>You should do your readings ahead of time!</p>
+          </div>
+          <span class="time small">10:59</span>
+        </div>
+        <hr>
+        <div class="friend-drawer friend-drawer--onhover">
+          <img src="https://media-exp1.licdn.com/dms/image/C4D03AQEQw6-YoSl1hA/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=0BvvYXAn2pWdx0lnWbtuA8Q1RIi5K5unbY56voqgOYI" alt="Friend photo" class="profile-image">
+          <div class="text">
+            <h6>Philip Sterne</h6>
+            <p>Don't be late to my class!</p>
+          </div>
+          <span class="time small">10:59</span>
+        </div>
+        <hr>
+        <div class="friend-drawer friend-drawer--onhover">
+          <img src="https://media-exp1.licdn.com/dms/image/C4D03AQEQw6-YoSl1hA/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=0BvvYXAn2pWdx0lnWbtuA8Q1RIi5K5unbY56voqgOYI" alt="Friend photo" class="profile-image">
+          <div class="text">
+            <h6>Philip Sterne</h6>
+            <p>I expect excellence from you!</p>
+          </div>
+          <span class="time small">10:59</span>
+        </div>
+        <hr>
+        <div class="friend-drawer friend-drawer--onhover">
+          <img src="https://media-exp1.licdn.com/dms/image/C4D03AQEQw6-YoSl1hA/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=0BvvYXAn2pWdx0lnWbtuA8Q1RIi5K5unbY56voqgOYI" alt="Friend photo" class="profile-image">
+          <div class="text">
+            <h6>Philip Sterne</h6>
+            <p>Tell me more about abstraction!</p>
+          </div>
+          <span class="time small">10:59</span>
+        </div>
+        <hr>
+        <div class="friend-drawer friend-drawer--onhover">
+          <img src="https://media-exp1.licdn.com/dms/image/C4D03AQEQw6-YoSl1hA/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=0BvvYXAn2pWdx0lnWbtuA8Q1RIi5K5unbY56voqgOYI" alt="Friend photo" class="profile-image">
+          <div class="text">
+            <h6>Philip Sterne</h6>
+            <p>Tell me more about abstraction!</p>
+          </div>
+          <span class="time small">10:59</span>
+        </div>
+        <hr>
+
+        <div class="friend-drawer friend-drawer--onhover">
+          <img src="https://media-exp1.licdn.com/dms/image/C4D03AQEQw6-YoSl1hA/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=0BvvYXAn2pWdx0lnWbtuA8Q1RIi5K5unbY56voqgOYI" alt="Friend photo" class="profile-image">
+          <div class="text">
+            <h6>Philip Sterne</h6>
+            <p>I see you're sleeping on the main screen!</p>
+          </div>
+          <span class="time small">10:59</span>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+
+    <div class="col-md-8">
+
+      <div class="settings-tray">
+        <div class="friend-drawer no-gutters friend-drawer--grey">
+          <img src="https://media-exp1.licdn.com/dms/image/C4D03AQEQw6-YoSl1hA/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=0BvvYXAn2pWdx0lnWbtuA8Q1RIi5K5unbY56voqgOYI" alt="Friend photo" class="profile-image">
+          <div class="text">
+            <h6>Philip Sterne</h6>
+            <p>Short explanation for the group</p>
+          </div>
+          <span class="float-right">
+            <i class="material-icons">settings</i>
+            <i class="material-icons">info</i>
+          </span>
+        </div>
+      </div>
+
+      <div class="chat-pannel">
+          <div class="scrollable">
+
+            <div class="row no-gutters">
+              <div class="col-md-3">
+                <div class="chat-bubble">
+                  Hi friend!
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row no-gutters">
+              <div class="col-md-3 offset-md-9">
+                <div class="chat-bubble">
+                  Hi Prof!
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row no-gutters">
+              <div class="col-md-3">
+                <div class="chat-bubble">
+                  Hi friend!
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="chat-box-tray">
+              <i class="material-icons">sentiment_very_satisfied</i>
+              <input type="text" placeholder="Type your message here...">
+              <i class="material-icons">send</i>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+  <!-- End of Page Wrapper -->
+
+</body>
+
+</html>

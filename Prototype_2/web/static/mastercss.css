@@ -166,6 +166,12 @@ a {
   background-color: transparent;
 }
 
+c {
+  color: white;
+  text-decoration: none;
+  background-color: transparent;
+}
+
 a:hover {
   color: #224abe;
   text-decoration: underline;
@@ -257,6 +263,17 @@ textarea {
 button,
 input {
   overflow: visible;
+  color: white;
+  background-color: orange;
+  border-radius: 5px;
+  border-color: orange;
+}
+
+input[type="file"] {
+  color: white;
+  background-color: orange;
+  border-radius: 5px;
+  border-color: orange;
 }
 
 button,
@@ -1145,8 +1162,8 @@ pre code {
     max-width: 50%;
   }
   .col-lg-7 {
-    flex: 0 0 44.33333%;
-    max-width: 44.33333%;
+    flex: 0 0 56.33333%;
+    max-width: 56.33333%;
   }
   .col-lg-8 {
     flex: 0 0 66.66667%;
@@ -2237,6 +2254,13 @@ textarea.form-control {
   }
 }
 
+.start-activity {
+  color: #000000;
+  background-color: orange;
+  border-radius: 5px;
+  border-color: orange;
+}
+
 .btn {
   display: inline-block;
   font-weight: 400;
@@ -2282,7 +2306,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
-  color: #fff;
+  color: white;
   background-color: #ff9b50;
   border-color: #ff9b50;
 }
@@ -7734,7 +7758,7 @@ button.bg-dark:focus {
 }
 
 .p-5 {
-  padding: 3rem !important;
+  padding: 2rem !important;
 }
 
 .pt-5,
@@ -11041,4 +11065,28 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
+}
+
+.photo-upload{
+  margin-bottom: 20px;
+}
+
+.file {
+  color: white;
+}
+
+#profile-head {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 100px;
+}
+
+img {
+  border-radius: 50%;
+  width: 20%;
+}
+
+#profile-body {
+  text-align: center;
+  margin-top: 100px;
 }

@@ -16,6 +16,9 @@ index_template = Blueprint('index', __name__, template_folder='../templates',sta
 # Display home page based on authentication status
 @index_template.route('/', methods=["GET","POST"])
 def index():
+    '''
+    Display home page based on authentication status.
+    '''
     if current_user.is_authenticated:
         return render_template('mainpage.html', name=current_user.name, email=current_user.email)
     else:

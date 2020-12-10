@@ -97,6 +97,7 @@ def send_reset_email(user):
                 '''
     return message_body
 
+  
 
 @user_template.route("/forgotpassword/<token>", methods=['GET', 'POST'])
 def reset_token(token):
@@ -104,10 +105,11 @@ def reset_token(token):
     if current_user.is_authenticated:
         return redirect(url_for('index.index'))
 
-    user_exists = current_user.verify_reset_token(token=token)
+    user_exists = User.verify_reset_token(token=token)
     if user_exists is None:
         flash('That is an invalid or expired token', 'warning')
         return redirect(url_for('reset_token'))
+
     form = ResetPasswordForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')

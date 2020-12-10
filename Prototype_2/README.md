@@ -1,3 +1,5 @@
+# NOTE: This master branch is not being deployed, the heroku-master branch is being deployed. The master branch was to keep track of all functionality that runs locally, like the chat feature. Please see the heroku-master branch for production branch.
+
 # Table of Contents
 - 1: Workflow
 - 2: File Structure
@@ -19,12 +21,13 @@ _____
 Highlight of most relevant files:
 requirements.txt: contains a list of package dependencies. Always remember to load it and update it with virtual environment!!
 
-web/blueprints/* : All routing and controller logic is here.
-web/static/* : Contains static files. Ex: CSS, JS, images
-web/templates/* : View templates are here. So all HTML files
-models.py : Define models (database tables) here.
-serve.py : Where the main application is defined.
+- web/blueprints/* : All routing and controller logic is here.
+- web/static/* : Contains static files. Ex: CSS, JS, images
+- web/templates/* : View templates are here. So all HTML files
+- models.py : Define models (database tables) here.
+- serve.py : Where the main application is defined.
 _____
+
 # 3: Specific Commands
 # Welcome to CS162 Final Project
 
@@ -220,10 +223,28 @@ Alternatively, you may email the author at amal@minerva.kgi.edu for the client I
 
 Start the server by running:
 
+The path to your ssl key and cert are most likely:
+<path to project folder>/key.pem
+
+!! Would recommend setting these variables in your bash profile if you intend on accessing this multiple times
+
     $ export FLASK_ENV=development
     $ export FLASK_APP=web
+<<<<<<< HEAD
+||||||| merged common ancestors
+    $ export GOOGLE_CLIENT_ID=<<client_id>
+    $ export GOOGLE_CLIENT_SECRET=<<client_secret>>
+    $ openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
+=======
+    $ export GOOGLE_CLIENT_ID=<<client_id>
+    $ export GOOGLE_CLIENT_SECRET=<<client_secret>>
+    $ openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
+    $ export KEY_PATH=<<path to your ssl key>>
+    $ export CERT_PATH=<<path to your ssl cert>>
+>>>>>>> old-master
     $ export FLASK_RUN_CERT=adhoc
-    $ python3 -m flask run
+    $ export DATABASE_URL='sqlite:///web.db'
+    $ python web/serve.py
 
 ## Unit Tests - not in scope of this branch
 To run the unit tests use the following commands:

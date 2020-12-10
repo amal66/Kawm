@@ -4,9 +4,25 @@ from flask import current_app as app
 pages_template = Blueprint('pages', __name__, template_folder='../templates',static_folder='../static')
 
 @pages_template.route('/mainpage')
+@login_required
 def mainpage():
-    return render_template('mainpage.html')
+    '''
+    Render mainpage with group data from user logged in.
+    '''
+    return render_template('mainpage.html', groups=groups)
 
 @pages_template.route('/mgevents')
+@login_required
 def manage_events():
+    '''
+    Render event management page for user logged in.
+    '''
     return render_template('manage_events.html')
+
+@pages_template.route('/profile', methods=["GET"])
+@login_required
+def profile():
+    '''
+    Render profile page for user logged in.
+    '''
+    return render_template('profile.html', name=current_user.name, email=current_user.email, createdAt=current_user.createdAt)

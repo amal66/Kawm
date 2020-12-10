@@ -8,11 +8,11 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Kawm Login</title>
+  <title>Minerva Community Portal</title>
 
   <!-- Custom fonts for this template-->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+  <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico"/>
   <!-- Custom styles for this template-->
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='mastercss.css') }}">
 
@@ -27,7 +27,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/mainpage">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -99,14 +99,14 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href={{url_for('pages.profile') }}>
           <i class="fas fa-fw fa-cog"></i>
           <span>Profile</span>
         </a>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="/logout">
+        <a class="nav-link" href="/">
           <i class="fas fa-fw fa-cog"></i>
           <span>Logout</span>
         </a>
@@ -142,13 +142,6 @@
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-              <a href="/">Upcoming Activities</a>
-            </span>
-
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-              <a href="/">Start Activity</a>
-            </span>
 
             <span class="mr-2 d-none d-lg-inline text-gray-600 small">
               <a href="/">Manage Activities</a>
@@ -158,7 +151,15 @@
               <a href="/">Previous Activities</a>
             </span>
 
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+              <a href="/">Upcoming Activities</a>
+            </span>
+
           </ul>
+
+          <button class="start-activity" type="button">
+            <a href="/groups">Join Groups</a>
+          </button>
 
         </nav>
         <!-- End of Topbar -->
@@ -174,67 +175,21 @@
 
           <!-- Content Row -->
           <div class="row">
-            <!-- Example Activity -->
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-white">Archery Session</h6>
+            {% for g in groups%}
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-white">{{g.name}}</h6>
+                </div>
+                <div class="card-body">
+                  <div class="location"> {{g.users}}</div>
+                  <!-- <div class="time"> Time: 13:00</div> -->
+                  <div class="content"> {{g.description}} </div>
+                  <a target="_blank" rel="nofollow" href={{url_for('chat.chat', group_id=g.id) }}>Join Groupchat &rarr;</a>
+                </div>
               </div>
-              <div class="card-body">
-                <div class="location"> Location: San Telmo Park</div>
-                <div class="time"> Time: 13:00</div>
-                <div class="content"> Hey guys. Join for some archery! </div>
-                <a target="_blank" rel="nofollow" href="/mainpage">Join Groupchat &rarr;</a>
-              </div>
-            </div>
 
+            {% endfor%}
             <!-- Example Activity -->
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-white">Archery Session</h6>
-              </div>
-              <div class="card-body">
-                <div class="location"> Location: San Telmo Park</div>
-                <div class="time"> Time: 13:00</div>
-                <div class="content"> Hey guys. Join for some archery! sdfghjklsdf ghjklsdfghjk. </div>
-                <a target="_blank" rel="nofollow" href="/mainpage">Join Groupchat &rarr;</a>
-              </div>
-            </div>
-            <!-- Example Activity -->
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-white">Archery Session</h6>
-              </div>
-              <div class="card-body">
-                <div class="location"> Location: San Telmo Park</div>
-                <div class="time"> Time: 13:00</div>
-                <div class="content"> Hey guys. Join for some archery! dahfiuehufie whuifhewuif hewiuhfuiewhfuilelwhfeuiuewhil </div>
-                <a target="_blank" rel="nofollow" href="/mainpage">Join Groupchat &rarr;</a>
-              </div>
-            </div>
-            <!-- Example Activity -->
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-white">Archery Session</h6>
-              </div>
-              <div class="card-body">
-                <div class="location"> Location: San Telmo Park</div>
-                <div class="time"> Time: 13:00</div>
-                <div class="content"> Hey guys. Join for some archery! </div>
-                <a target="_blank" rel="nofollow" href="/mainpage">Join Groupchat &rarr;</a>
-              </div>
-            </div>
-            <!-- Example Activity -->
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-white">Archery Session</h6>
-              </div>
-              <div class="card-body">
-                <div class="location"> Location: San Telmo Park</div>
-                <div class="time"> Time: 13:00</div>
-                <div class="content"> Hey guys. Join for some archery! </div>
-                <a target="_blank" rel="nofollow" href="/mainpage">Join Groupchat &rarr;</a>
-              </div>
-            </div>
 
           </div>
 
@@ -248,7 +203,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Kawm 2020</span>
+            <span>Copyright &copy; Minerva Community 2020</span>
           </div>
         </div>
       </footer>

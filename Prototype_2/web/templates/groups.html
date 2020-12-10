@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Join Groups</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <!-- link rel=stylesheet type=text/css href="{{ url_for('static', filename='mastercss.css') }}"-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="compiled.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<div class="container">
+  {% for g in groups %}
+    <div class="row">
+      <div class="w-100">
+        <h3> Group Name: {{g.name}} </h3>
+        <p> {{g.description}} </p>
+        {% if not membership[loop.index-1]%}
+          <form action = {{ url_for('groups.join_group', group_id=g.id) }} method = "POST">
+           <p><input type = "submit" value = "join" /></p>
+          </form>
+        {% else %}
+          Already a member!
+        {% endif %}
+      </div>
+    </div>
+    <hr>
+  {% endfor %}
+</div>
+
+</body>
+
+</html>

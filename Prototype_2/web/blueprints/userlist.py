@@ -8,11 +8,15 @@ from flask_login import (
     logout_user,
     UserMixin,
 )
-from ..models import User, db
+from models import User
 
 userlist_template = Blueprint('userlist', __name__, template_folder='../templates',static_folder='../static')
 
 @userlist_template.route('/userlist')
+@login_required
 def users():
+    '''
+    Queries all of the users in the User table (all users on Minerva Community).
+    '''
     users = User.query.all()
     return render_template('users.html', users=users)
