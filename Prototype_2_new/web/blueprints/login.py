@@ -1,7 +1,7 @@
 # Based on https://realpython.com/flask-google-login/
 from flask import Blueprint, render_template, request, redirect, url_for, g, session
 from ..serve import app
-from ..models import User, Class, db
+from ..models import User, Class, File, db
 from flask_login import (
     LoginManager,
     current_user,
@@ -169,12 +169,13 @@ def logout():
 def check_and_login_user(user_first_name, user_email, platform_name): 
     user = User.query.filter_by(email=user_email).first()
     classes = Class.query.all()
+    files = File.query.all()
     if user is None:
         user = User(email=user_email, name=user_first_name, password=hash_string(platform_name))
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        return render_template('select_classes.html', name=user_first_name, email=user_email, classes = classes )
+        return render_template('select_classes.html', name=user_first_name, email=user_email, classes = classes, files = files )
     else: 
-        return render_template('select_classes.html', name=user_first_name, email=user_email, classes = classes )
+        return render_template('select_classes.html', name=user_first_name, email=user_email, classes = classes, files = files )
     

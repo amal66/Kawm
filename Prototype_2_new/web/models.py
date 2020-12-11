@@ -53,8 +53,8 @@ class Class(db.Model):
 class File(db.Model):
     __tablename__ = 'message'
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String)
-    success = db.Column(db.Boolean)
-    reason = db.Column(db.String)
+    name = db.Column(db.String)
+    description = db.Column(db.String)
+    link= db.Column(db.String)
     createdAt = db.Column(DateTime, default=datetime.datetime.utcnow) # calc independently
     class_id = db.Column(db.Integer, db.ForeignKey('class.id'), nullable=False)
