@@ -45,13 +45,13 @@ def initial_load_database(app, db):
         cs162_id = account = db.session.query(Class).filter_by(name = 'CS162').first().id
         
         
-        cs166_resource_1 = File(name='MLOps Research paper', description = 'Reading for 3.2', link = 'https://drive.google.com/file/d/1SCxJMaS3Bdf1Ul39elFhUj6N_OfRpESX/view?usp=sharing', class_id = cs166.id)
+        cs166_resource_1 = File(name='Introduction to the Modeling and Analysis of Complex Systems', description = 'Course Textbook 1 ', link = 'https://drive.google.com/file/d/1ULEzfCzor31fp_Utv-ewk_sZ5KEm6_7W/view?usp=sharing', class_id = cs166.id)
         db.session.add(cs166_resource_1)
-        cs166_resource_2 = File(name='MLOps Research paper2', description = 'Reading for 3.2', link = 'https://drive.google.com/file/d/1SCxJMaS3Bdf1Ul39elFhUj6N_OfRpESX/view?usp=sharing', class_id = cs166.id)
+        cs166_resource_2 = File(name='Explorations in Monte Carlo Methods', description = 'Course Textbook 2', link = 'https://drive.google.com/file/d/1zzGRZkJF9QBwHILHvtd_2lym8Hv29HHX/view?usp=sharing', class_id = cs166.id)
         db.session.add(cs166_resource_2)
-        cs162_resource_1 = File(name='MLOps Research paper3', description = 'Reading for 3.2', link = 'https://drive.google.com/file/d/1SCxJMaS3Bdf1Ul39elFhUj6N_OfRpESX/view?usp=sharing', class_id = cs166.id)
+        cs162_resource_1 = File(name='MLOps Research paper ', description = 'Reading for 3.2', link = 'https://drive.google.com/file/d/1SCxJMaS3Bdf1Ul39elFhUj6N_OfRpESX/view?usp=sharing', class_id = cs162.id)
         db.session.add(cs162_resource_1)
-        cs162_resource_2 = File(name='MLOps Research paper4', description = 'Reading for 3.2', link = 'https://drive.google.com/file/d/1SCxJMaS3Bdf1Ul39elFhUj6N_OfRpESX/view?usp=sharing', class_id = cs166.id)
+        cs162_resource_2 = File(name='Flask PDF Sample', description = 'Reading for 4.1', link = 'https://drive.google.com/file/d/1yKNdczBP1IxGuN5RApgb2zVMlcLA0jPD/view?usp=sharing', class_id = cs162.id)
         db.session.add(cs162_resource_2)
 
         db.session.commit()

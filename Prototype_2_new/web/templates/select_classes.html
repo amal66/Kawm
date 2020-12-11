@@ -13,7 +13,6 @@
   <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico"/>
   <!-- Custom styles for this template-->
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='mastercss.css') }}">
-
 </head>
 
 <body id="page-top">
@@ -61,6 +60,7 @@
           <!-- Content Row -->
           <div class="row">
             {% for c in classes%}
+            <a href="{{ url_for('pages.select_classes',classname= c.name) }}">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-white">{{c.name}}</h6>
@@ -69,7 +69,7 @@
                   <div class="content"> {{c.description}} </div>
                 </div>
               </div>
-
+              </a>
             {% endfor%}
             <!-- Example Activity -->
 
@@ -81,7 +81,7 @@
           </div>
           <div class="row">
             {% for f in files%}
-              <div class="card shadow mb-4">
+              <div class="card shadow mb-4" id ={{f.class_id}}>
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-white">{{f.name}}</h6>
                 </div>
@@ -93,8 +93,8 @@
 
             {% endfor%}
             <!-- Example Activity -->
-
           </div>
+          <h6> Missing a file? Contribute a resource at <a href="https://forms.gle/s9xqWZx7p4ZBwn8v6">Link</a></h6>
             
         </div>
         <!-- /.container-fluid -->
@@ -106,7 +106,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Minerva Community 2020</span>
+            <span>Copyright &copy; Kawm 2020</span>
           </div>
         </div>
       </footer>

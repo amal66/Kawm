@@ -63,8 +63,7 @@ def register():
         db.session.commit()
         login_user(new_user)
         #return render_template('logged_in.html', name=users_name, email=users_email)
-        return render_template('select_classes.html', name=first_name, email=email)
-
+        return render_template('select_courses.html', name=first_name, email=email)
     else: 
         return render_template('register.html')
 

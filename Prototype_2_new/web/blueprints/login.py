@@ -175,7 +175,7 @@ def check_and_login_user(user_first_name, user_email, platform_name):
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        return render_template('select_classes.html', name=user_first_name, email=user_email, classes = classes, files = files )
+        return render_template('select_classes.html', name=user_first_name, email=user_email, classes = classes, files = files)
     else: 
         return render_template('select_classes.html', name=user_first_name, email=user_email, classes = classes, files = files )
     
