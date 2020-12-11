@@ -13,3 +13,7 @@ Start the server by running:
     $ export FLASK_APP=web
     $ export FLASK_RUN_CERT=adhoc
     $ python3 -m flask run
+
+## Docker
+    $docker build -t kawm:latest .
+    $docker run --publish 5000:5000 --detach --name bb kawm

@@ -11,13 +11,13 @@ WORKDIR /web
 ADD . /web
 
 RUN pip3 install -r requirements.txt
+ENV SQLALCHEMY_DATABASE_URI='sqlite:///web.db'
+ENV FLASK_ENV=development
+ENV FLASK_APP=web
+ENV FLASK_RUN_CERT=adhoc
 
 # Make port 5000 available to the world outside this container
-EXPOSE 5000
+EXPOSE 8000
 
 # Run app.py when the container launches
-CMD ["export", "SQLALCHEMY_DATABASE_URI='sqlite:///web.db'"]
-CMD ["export", "FLASK_ENV=development"]
-CMD ["export", "FLASK_APP=web"]
-CMD ["export", "FLASK_RUN_CERT=adhoc"]
 CMD ["python3", "-m", "flask", "run"]
