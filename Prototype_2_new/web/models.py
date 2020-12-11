@@ -47,7 +47,6 @@ class Class(db.Model):
     name = db.Column(db.String(200))
     description = db.Column(db.String)
     userCount = db.Column(db.Integer)
-    confirmed = db.Column(db.Boolean)
     createdAt = db.Column(DateTime, default=datetime.datetime.utcnow) # calc independently
     files = db.relationship('File', backref='class', lazy=True)
 

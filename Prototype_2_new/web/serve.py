@@ -28,12 +28,19 @@ app.config['OAUTH_CREDENTIALS'] = {
 app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=1)
 
 # create database tables
-from .models import db, User
+from .models import db, User, Class
+
 db.init_app(app)
 
 with app.app_context():
+    db.drop_all()
     db.create_all()
+    cs166 = Class(name='CS166', description='Modeling and Simulation')
+    db.session.add(cs166)
+    cs162 = Class(name='CS162', description='Building Powerful software applications')
+    db.session.add(cs162)
     db.session.commit()
+
 
 # User session management setup with flask_login
 login_manager = LoginManager()
