@@ -1,10 +1,23 @@
 from flask import Blueprint, render_template
 from flask import current_app as app
 from flask_login import (
+    LoginManager,
+    current_user,
     login_required,
+    login_user,
+    logout_user,
+    UserMixin
 )
 
 pages_template = Blueprint('pages', __name__, template_folder='../templates',static_folder='../static')
+
+@pages_template.route('/classselection')
+@login_required
+def select_classes():
+    '''
+    Allows the user to select classes, and add classes if classes are not already there
+    '''
+    return render_template('selct_classes.html')
 
 @pages_template.route('/mainpage')
 @login_required

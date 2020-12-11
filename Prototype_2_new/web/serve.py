@@ -53,7 +53,6 @@ from web.blueprints.index import index_template
 from web.blueprints.login import login_template
 from web.blueprints.user import user_template
 from web.blueprints.pages import pages_template
-
 # from web.blueprints.users import users_template # was only used for testing login
 
 

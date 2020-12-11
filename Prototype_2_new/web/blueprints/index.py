@@ -29,7 +29,7 @@ def index():
             user_details = User.query.filter_by(email=email).first() 
 
             if user_details: 
-                #return render_template('mainpage.html', name=user_details.name, email=user_details.email)
+                
                 
                 hashed_password = str(hash_string(password))
                 

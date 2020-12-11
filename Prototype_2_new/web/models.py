@@ -6,13 +6,12 @@ from sqlalchemy import Column, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from .serve import app
-# groups <> users: many to many
-# groups <> messages: one to many
+
 db = SQLAlchemy()
 
-user_group = db.Table('user_group', db.Model.metadata,
+user_class= db.Table('user_class', db.Model.metadata,
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('group_id', db.Integer, db.ForeignKey('group.id'))
+    db.Column('class_id', db.Integer, db.ForeignKey('class.id'))
 )
 
 class User(UserMixin, db.Model):
@@ -40,23 +39,23 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(200))
     password = db.Column(db.String(200))
     createdAt = db.Column(DateTime, default=datetime.datetime.utcnow) # calc independently
-    groups = db.relationship('Group', secondary='user_group', backref=db.backref('users'), lazy=True) # many to many w association table, lazy load
+    classes = db.relationship('Class', secondary='user_class', backref=db.backref('users'), lazy=True) # many to many w association table, lazy load
 
-class Group(db.Model):
-    __tablename__ = 'group'
+class Class(db.Model):
+    __tablename__ = 'class'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200))
     description = db.Column(db.String)
     userCount = db.Column(db.Integer)
     confirmed = db.Column(db.Boolean)
     createdAt = db.Column(DateTime, default=datetime.datetime.utcnow) # calc independently
-    messages = db.relationship('Message', backref='group', lazy=True)
+    files = db.relationship('File', backref='class', lazy=True)
 
-class Message(db.Model):
+class File(db.Model):
     __tablename__ = 'message'
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String)
     success = db.Column(db.Boolean)
     reason = db.Column(db.String)
     createdAt = db.Column(DateTime, default=datetime.datetime.utcnow) # calc independently
-    group_id = db.Column(db.Integer, db.ForeignKey('group.id'), nullable=False)
+    class_id = db.Column(db.Integer, db.ForeignKey('class.id'), nullable=False)
