@@ -4,6 +4,7 @@ from flask_login import LoginManager, UserMixin
 from datetime import timedelta
 import os
 import sys
+import pandas as pd
 
 # _____ INIT + CONFIG ______
 #Create a flask app
@@ -34,25 +35,24 @@ def initial_load_database(app, db):
         db.drop_all()
         db.create_all()
 
-        #Load classes
-        cs166 = Class(name='CS166', description='Modeling and Simulation')
-        db.session.add(cs166)
-        cs162 = Class(name='CS162', description='Building Powerful software applications')
-        db.session.add(cs162)
+        #get all unique values from column 1, then add them to database with generic description
+        #for each of them, create an id. Then create and commit all files that are related to them. 
+        data = pd.read_csv('resources.csv')
+        x = data.iloc[:,0]
+        y = x.drop_duplicates()
+        for subject in y.to_numpy(): 
+            class_name = Class(name=subject, description=subject)
+            db.session.add(class_name)
+        
+        for index, row in data.iterrows():
+            class_name = row[0]
+            text_name = row[1]
+            url = row[2]
+            description = "Readings for " + text_name
+            class_id = db.session.query(Class).filter_by(name=class_name).first().id
+            resource = File(name=description, description=text_name, link=url, class_id=class_id)
+            db.session.add(resource)
 
-        #Load resources 
-        cs166_id = account = db.session.query(Class).filter_by(name = 'CS166').first().id
-        cs162_id = account = db.session.query(Class).filter_by(name = 'CS162').first().id
-        
-        
-        cs166_resource_1 = File(name='Introduction to the Modeling and Analysis of Complex Systems', description = 'Course Textbook 1 ', link = 'https://drive.google.com/file/d/1ULEzfCzor31fp_Utv-ewk_sZ5KEm6_7W/view?usp=sharing', class_id = cs166.id)
-        db.session.add(cs166_resource_1)
-        cs166_resource_2 = File(name='Explorations in Monte Carlo Methods', description = 'Course Textbook 2', link = 'https://drive.google.com/file/d/1zzGRZkJF9QBwHILHvtd_2lym8Hv29HHX/view?usp=sharing', class_id = cs166.id)
-        db.session.add(cs166_resource_2)
-        cs162_resource_1 = File(name='MLOps Research paper ', description = 'Reading for 3.2', link = 'https://drive.google.com/file/d/1SCxJMaS3Bdf1Ul39elFhUj6N_OfRpESX/view?usp=sharing', class_id = cs162.id)
-        db.session.add(cs162_resource_1)
-        cs162_resource_2 = File(name='Flask PDF Sample', description = 'Reading for 4.1', link = 'https://drive.google.com/file/d/1yKNdczBP1IxGuN5RApgb2zVMlcLA0jPD/view?usp=sharing', class_id = cs162.id)
-        db.session.add(cs162_resource_2)
 
         db.session.commit()
 

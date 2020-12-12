@@ -169,7 +169,7 @@ def logout():
 def check_and_login_user(user_first_name, user_email, platform_name): 
     user = User.query.filter_by(email=user_email).first()
     classes = Class.query.all()
-    files = File.query.all()
+    files = File.query.filter_by(class_id='Placeholder')
     if user is None:
         user = User(email=user_email, name=user_first_name, password=hash_string(platform_name))
         db.session.add(user)

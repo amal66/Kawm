@@ -16,4 +16,4 @@ Start the server by running:
 
 ## Docker
     $docker build -t kawm:latest .
-    $docker run --publish 5000:5000 --detach --name bb kawm
+    $docker run --publish 8000:8000 --detach --name 285 kawm
