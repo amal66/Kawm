@@ -17,7 +17,7 @@ ENV FLASK_APP=web
 ENV FLASK_RUN_CERT=adhoc
 
 # Make port 5000 available to the world outside this container
-EXPOSE 8000
+EXPOSE 5000
 
 # Run app.py when the container launches
 CMD ["python3", "-m", "flask", "run"]

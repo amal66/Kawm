@@ -91,4 +91,4 @@ app.register_blueprint(user_template)
 app.register_blueprint(pages_template)
 
 if __name__ == '__main__':
-    app.run(ssl_context=('cert.pem', 'key.pem'))
+    app.run(ssl_context=('cert.pem', 'key.pem'), threaded = True, port = 5000)
