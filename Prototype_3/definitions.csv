@@ -1,0 +1,66 @@
+AGENT,An agent is anything that can be viewed as perceiving its environment through sensors and acting upon that environment through actuators.
+SENSOR,An agent is anything that can be viewed as perceiving its environment through sensors and acting upon that environment through actuators.
+ACTUATOR,An agent is anything that can be viewed as perceiving its environment through sensors and acting upon that environment through actuators.
+ENVIRONMENT,An agent is anything that can be viewed as perceiving its environment through sensors and acting upon that environment through actuators.
+PERCEPT,We use the term percept to refer to the agent’s perceptual inputs at any given instant.
+PERCEPT SEQUENCE,An agent’s percept sequence is the complete history of everything the agent has ever perceived.
+AGENT FUNCTION,"Mathematically speaking, we say that an agent’s behavior is described by the agent function that maps any given percept sequence to an action."
+AGENT PROGRAM,"The agent function is an abstract mathematical description; the agent program is a concrete implementation, running within some physical system."
+RATIONAL AGENT,"A rational agent is one that does the right thing—conceptually speaking, every entry in the table for the agent function is filled out correctly."
+PERFORMANCE MEASURE,"When an agent is plunked down in an environment, it generates a sequence of actions according to the percepts it receives. This sequence of actions causes the environment to go through a sequence of states. If the sequence is desirable, then the agent has performed well. This notion of desirability is captured by a performance measure that evaluates any given sequence of environment states."
+DEFINITION OF A RATIONAL AGENT,"For each possible percept sequence, a rational agent should select an action that is expected to maximize its performance measure, given the evidence provided by the percept sequence and whatever built-in knowledge the agent has."
+OMNISCIENCE,We need to be careful to distinguish between rationality and omniscience. An omniscient agent knows the actual outcome of its actions and can act accordingly; but omniscience is impossible in reality.
+INFORMATION GATHERING, Doing actions in order to modify future percepts‚sometimes called information gathering‚Äîis an important part of rationality and is covered in depth in Chapter 16
+EXPLORATION, A second example of information gathering is provided by the exploration that must be undertaken by a vacuum-cleaning agent in an initially unknown environment
+LEARNING,"Our definition requires a rational agent not only to gather information but also to learn as much as possible from what it perceives. The agent’s initial configuration could reflect some prior knowledge of the environment, but as the agent gains experience this may be modified and augmented."
+AUTONOMY," To the extent that an agent relies on the prior knowledge of its designer rather than on its own percepts, we say that the agent lacks autonomy"
+TASK ENVIRONMENT,"First, however, we must think about task environments, which are essentially
+the “problems” to which rational agents are the “solutions.”"
+PEAS," For the acronymically minded, we call this the PEAS (Performance, Environment, Actuators, Sensors) description"
+SOFTWARE AGENT,"In contrast, some software agents SOFTWARE AGENT (or software robots or softbots) exist in rich, unlimited domains. Imagine a softbot Web site operator designed to scan Internet news sources and show the interesting items to its users, while selling advertising space to generate revenue"
+SOFTBOT,"In contrast, some software agents SOFTWARE AGENT (or software robots or softbots) exist in rich, unlimited domains. Imagine a softbot Web site operator designed to scan Internet news sources and show the interesting items to its users, while selling advertising space to generate revenue"
+FULLY OBSERVABLE,"Fully observable vs partially observable: If an agent's sensors give it access to the complete state of the environment at each point in time, then we say that the task environment is fully observable"
+PARTIALLY OBSERVABLE,"An environment might be partially observable because of noisy and inaccurate sensors or because parts of the state are simply missing from the sensor data—for example, a vacuum agent with only a local dirt sensor cannot tell whether there is dirt in other squares, and an automated taxi cannot see what other drivers are thinking."
+UNOBSERVABLE, If the agent has no sensors at all then the environment is unobservable
+SINGLE AGENT,"Single agent vs. multiagent: The distinction between single-agent and multiagent environments may seem simple enough. For example, an agent solving a crossword puzzle by itself is clearly in a single-agent environment, whereas an agent playing chess is in a twoagent environment."
+MULTIAGENT,"Single agent vs. multiagent: The distinction between single-agent and multiagent environments may seem simple enough. For example, an agent solving a crossword puzzle by itself is clearly in a single-agent environment, whereas an agent playing chess is in a twoagent environment."
+COMPETITIVE," For example, in chess, the opponent entity B is trying to maximize its performance measure, which, by the rules of chess, minimizes agent A‚Äôs performance measure Thus, chess is a competitive multiagent environment"
+COOPERATIVE," In the taxi-driving environment, on the other hand, avoiding collisions maximizes the performance measure of all agents, so it is a partially cooperative multiagent environment"
+DETERMINISTIC," Deterministic vs stochastic If the next state of the environment is completely determined by the current state and the action executed by the agent, then we say the environment is deterministic; otherwise, it is stochastic"
+STOCHASTIC," Deterministic vs stochastic If the next state of the environment is completely determined by the current state and the action executed by the agent, then we say the environment is deterministic; otherwise, it is stochastic"
+UNCERTAIN,We say an environment is uncertain if it is not fully observable or not deterministic
+NONDETERMINISTIC," One final note: our use of the word ‚Stochastic‚ generally implies that uncertainty about outcomes is quantified in terms of probabilities; a nondeterministic environment is one in which actions are characterized by their possible outcomes, but no probabilities are attached to them"
+EPISODIC," Episodic vs sequential: In an episodic task environment, the agent's experience is divided into atomic episodes"
+SEQUENTIAL," Episodic vs sequential: In an episodic task environment, the agent's experience is divided into atomic episodes"
+STATIC," Static vs dynamic: If the environment can change while an agent is deliberating, then we say the environment is dynamic for that agent; otherwise, it is static"
+DYNAMIC," Static vs dynamic: If the environment can change while an agent is deliberating, then we say the environment is dynamic for that agent; otherwise, it is static"
+SEMIDYNAMIC,"  Static vs dynamic: If the environment can change while an agent is deliberating, then we say the environment is dynamic for that agent; otherwise, it is static. Chess, when played with a clock, is semidynamic"
+DISCRETE,"Discrete vs. continuous: The discrete/continuous distinction applies to the state of the environment, to the way time is handled, and to the percepts and actions of the agent. For example, the chess environment has a finite number of distinct states (excluding the clock). Chess also has a discrete set of percepts and actions."
+CONTINUOUS," Discrete vs continuous: The discrete/continuous distinction applies to the state of the environment, to the way time is handled, and to the percepts and actions of the agent"
+KNOWN," In a known environment, the outcomes (or outcome probabilities if the environment is stochastic) for all actions are given"
+UNKNOWN," Known vs unknown: Strictly speaking, this distinction refers not to the environment itself but to the agent‚Äôs (or designer‚Äôs) state of knowledge about the ‚Äúlaws of physics‚Äù of the environment"
+ENVIRONMENT CLASS,"The code repository associated with this book (aima.cs.berkeley.edu) includes implementations of a number of environments, together with a general-purpose environment simulator that places one or more agents in a simulated environment, observes their behavior over time, and evaluates them according to a given performance measure. Such experiments are often carried out not for a single environment but for many environments drawn from an environment class. "
+ENVIRONMENT GENERATOR,"For that reason, the code repository  also includes an environment generator for each environment class that selects particular environments (with certain likelihoods) in which to run the agent."
+AGENT PROGRAM,"The job of AI is to design an agent program that implements the agent function, the mapping from percepts to actions."
+ARCHITECTURE,We assume this program will run on some sort of computing device with physical sensors and actuators—we call this the architecture
+SIMPLE REFLEX AGENT,"The simplest kind of agent is the simple reflex agent. These agents select actions on the basis of the current percept, ignoring the rest of the percept history."
+CONDITION-ACTION RULE,"In other words, some processing is done on the visual input to establish the condition we call “The car in front is braking.” Then, this triggers some established connection in the agent program to the action “initiate braking.” We call such a connection a condition–action rule,5 written as if car-in-front-is-braking then initiate-braking."
+RANDOMIZATION,Escape from infinite loops is possible if the agent can randomize its actions.
+INTERNAL STATE,"That is, the agent should maintain some sort of internal state that depends on the percept history and thereby reflects at least some of the unobserved aspects of the current state."
+MODEL,This knowledge about “how the world works”—whether implemented in simple Boolean circuits or in complete scientific theories—is called a model of the world. An agent that uses such a model is called a model-based agent
+MODEL-BASED AGENT,This knowledge about “how the world works”—whether implemented in simple Boolean circuits or in complete scientific theories—is called a model of the world. An agent that uses such a model is called a model-based agent
+GOAL," In other words, as well as a current state description, the agent needs some sort of goal information that describes situations that are desirable‚ for example, being at the passenger's destination"
+UTILITY,"A more general performance measure should allow a comparison of different world states according to exactly how happy they would make the agent. Because “happy” does not sound very scientific, economists and computer scientists use the term utility instead"
+UTILITY FUNCTION,An agent’s utility function is essentially an internalization of the performance measure.
+EXPECTED UTILITY,"Technically speaking, a rational utility-based agent chooses the action that maximizes the expected utility of the action outcomes—that is, the utility the agent expects to derive, on average, given the probabilities and utilities of each outcome."
+LEARNING ELEMENT,"A learning agent can be divided into four conceptual components, as shown in Figure 2.15. The most important distinction is between the learning element, which is responsible for making improvements, and the performance element, which is responsible for selecting external actions."
+PERFORMANCE ELEMENT,"15 The most important distinction is between the learning element, which is responsible for making improvements, and the performance element, which is responsible for selecting external actions"
+CRITIC, The learning element uses feedback from the critic on how the agent is doing and determines how the performance element should be modified to do better in the future
+PROBLEM GENERATOR,The last component of the learning agent is the problem generator. It is responsible for suggesting actions that will lead to new and informative experiences.
+ATOMIC REPRESENTATION,In an atomic representation each state of the world is indivisible‚ it has no internal structure
+FACTORED REPRESENTATION," A factored representation splits up each state into a fixed set of variables or attributes, each of which can have a value"
+VARIABLE," A factored representation splits up each state into a fixed set of variables or attributes, each of which can have a value"
+ATTRIBUTE," A factored representation splits up each state into a fixed set of variables or attributes, each of which can have a value"
+VALUE," A factored representation splits up each state into a fixed set of variables or attributes, each of which can have a value"
+STRUCTURED REPRESENTATION,"Instead, we would need a structured representation, in which objects such as cows and trucks and their various and varying relationships can be described explicitly"
+EXPRESSIVENESS,"As we mentioned earlier, the axis along which atomic, factored, and structured representations lie is the axis of increasing expressiveness. Roughly speaking, a more expressive representation can capture, at least as concisely, everything a less expressive one can capture, plus some more."
